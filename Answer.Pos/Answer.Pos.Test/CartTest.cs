@@ -6,6 +6,7 @@ using FluentAssertions.Equivalency;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Answer.Pos.Test
@@ -23,10 +24,15 @@ namespace Answer.Pos.Test
             productRepository = mock.Create<DataRepository<Product>>();
             cartRepository = mock.Create<DataRepository<Cart>>();
 
-            productRepository.Setup(repo => repo.Get(It.IsAny<int>()))
-                .Returns<int>(id => new Product { Id = 1, Name = "soap", UnitPrice = 10, });
+            var products = new List<Product>
+            {
+                 new Product { Id = 1, Name = "soap", UnitPrice = 10, },
+            };
 
-            cartController = new CartController(productRepository.Object, cartRepository.Object);
+            productRepository.Setup(repo => repo.Get(It.IsAny<int>()))
+                .Returns<int>(id => products.FirstOrDefault(p => p.Id == id));
+
+            cartController = new CartController(productRepository.Object, cartRepository.Object, new Api.Logic());
 
             AssertionOptions.AssertEquivalencyUsing(options =>
             {

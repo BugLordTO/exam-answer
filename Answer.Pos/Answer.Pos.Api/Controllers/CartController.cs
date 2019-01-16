@@ -14,14 +14,17 @@ namespace Answer.Pos.Api.Controllers
     {
         private readonly DataRepository<Product> productRepository;
         private readonly DataRepository<Cart> cartRepository;
+        private readonly Logic logic;
 
         public CartController(
             DataRepository<Product> productRepository,
-            DataRepository<Cart> cartRepository
+            DataRepository<Cart> cartRepository,
+            Logic logic
             )
         {
             this.productRepository = productRepository;
             this.cartRepository = cartRepository;
+            this.logic = logic;
         }
 
         [HttpGet]
@@ -33,16 +36,37 @@ namespace Answer.Pos.Api.Controllers
                 return cart;
             }
 
-            //var product = pro
+            var product = productRepository.Get(item?.ProductId ?? 0);
+            if (product == null)
+            {
+                return cart;
+            }
 
             if (cart == null)
             {
-                cart = new Cart
-                {
-                    //TotalPrice =
-                };
+                cart = new Cart();
                 cartRepository.Create(cart);
             }
+
+            var cartItems = cart.Items.ToList();
+            var cartItem = cartItems.FirstOrDefault(x => x.Product.Id == item.ProductId);
+            if (cartItem == null)
+            {
+                cartItem = logic.BuildCartItem(product, item.Quantity);
+                cartItems.Add(cartItem);
+            }
+            else
+            {
+                cartItem.Quantity += item.Quantity;
+                cartItem.TotalPrice = logic.CalculateItemTotalPrice(product.UnitPrice, cartItem.Quantity);
+            }
+
+            cart.Items = cartItems;
+
+            cart.TotalPrice = logic.CalculateCartTotalPrice(cart);
+            cart.Discount = logic.CalculateCartDiscount(cart);
+            cart.GrandTotalPrice = logic.CalculateCartGrandTotalPrice(cart);
+
             return cart;
         }
     }

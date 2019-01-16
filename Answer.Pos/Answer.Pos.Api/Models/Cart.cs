@@ -11,6 +11,6 @@ namespace Answer.Pos.Api.Models
         public double TotalPrice { get; set; }
         public double Discount { get; set; }
         public double GrandTotalPrice { get; set; }
-        public IEnumerable<CartItem> Items { get; set; }
+        public IEnumerable<CartItem> Items { get; set; } = Enumerable.Empty<CartItem>();
     }
 }

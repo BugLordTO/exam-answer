@@ -38,6 +38,7 @@ namespace Answer.Pos.Api
 
             services.AddSingleton<DataRepository<Product>, ProductRepository<Product>>();
             services.AddSingleton<DataRepository<Cart>, CartRepository<Cart>>();
+            services.AddSingleton<Logic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
