@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Answer.Pos.Api", "Answer.Pos.Api\Answer.Pos.Api.csproj", "{46A1C71F-DA9D-4AA4-9239-EC4160972747}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Answer.Pos.Api", "Answer.Pos.Api\Answer.Pos.Api.csproj", "{46A1C71F-DA9D-4AA4-9239-EC4160972747}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Answer.Pos.Test", "Answer.Pos.Test\Answer.Pos.Test.csproj", "{E60E968E-746F-4F92-9A13-9D0E166B69DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Answer.Pos.Test", "Answer.Pos.Test\Answer.Pos.Test.csproj", "{E154652D-8826-46A2-A888-E5DB958B921F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{46A1C71F-DA9D-4AA4-9239-EC4160972747}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46A1C71F-DA9D-4AA4-9239-EC4160972747}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46A1C71F-DA9D-4AA4-9239-EC4160972747}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E60E968E-746F-4F92-9A13-9D0E166B69DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E60E968E-746F-4F92-9A13-9D0E166B69DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E60E968E-746F-4F92-9A13-9D0E166B69DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E60E968E-746F-4F92-9A13-9D0E166B69DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E154652D-8826-46A2-A888-E5DB958B921F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E154652D-8826-46A2-A888-E5DB958B921F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E154652D-8826-46A2-A888-E5DB958B921F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E154652D-8826-46A2-A888-E5DB958B921F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
