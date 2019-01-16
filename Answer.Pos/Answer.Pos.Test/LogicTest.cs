@@ -51,16 +51,6 @@ namespace Answer.Pos.Test
                 }, 84.0 },
         };
 
-        /// <summary>
-        /// add not exist item to existing 1 item cart will not change
-        /// add item with 0 quantity to existing 1 item cart will not change
-        /// add item with negative quantity to existing 1 item cart will not change
-        /// add 1 item to existing 1 item cart will calculate total but not discount
-        /// add 3 item to existing 1 item cart will calculate total and discount 1 item
-        /// add 8 item to existing 1 item cart will calculate total and discount 2 item
-        /// </summary>
-        /// <param name="item"></param>
-        /// <param name="expected"></param>
         [Theory]
         [MemberData(nameof(cases))]
         public void add_item_to_existing_cart(Cart cart, double expected)

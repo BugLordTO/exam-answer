@@ -28,9 +28,21 @@ namespace Answer.Pos.Api.Controllers
         }
 
         [HttpGet]
+        public Cart Get()
+        {
+            return cartRepository.Get(0);
+        }
+
+        [HttpPost]
         public Cart AddToCart([FromBody]AddItem item)
         {
             var cart = cartRepository.Get(0);
+            if (cart == null)
+            {
+                cart = new Cart();
+                cartRepository.Create(cart);
+            }
+
             if (item?.Quantity <= 0)
             {
                 return cart;
@@ -40,12 +52,6 @@ namespace Answer.Pos.Api.Controllers
             if (product == null)
             {
                 return cart;
-            }
-
-            if (cart == null)
-            {
-                cart = new Cart();
-                cartRepository.Create(cart);
             }
 
             var cartItems = cart.Items.ToList();
