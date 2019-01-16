@@ -1,6 +1,7 @@
 using Answer.Loan.Api;
 using FluentAssertions;
 using System;
+using System.Linq;
 using Xunit;
 
 namespace Answer.Loan.Test
@@ -27,8 +28,8 @@ namespace Answer.Loan.Test
         public void CalculateNewPrincipalTest(double principal, int year, double interestPercentage, double expected)
         {
             var sut = new Logic();
-            var actual = sut.CalculateNewPrincipal(principal, year, interestPercentage);
-            actual.Should().Be(expected);
+            var actual = sut.CalculatePrincipal(principal, year, interestPercentage);
+            actual.LastOrDefault().Should().Be(expected);
         }
     }
 }

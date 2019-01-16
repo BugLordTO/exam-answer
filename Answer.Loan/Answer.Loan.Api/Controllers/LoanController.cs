@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Answer.Loan.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Answer.Loan.Api.Controllers
@@ -10,36 +11,34 @@ namespace Answer.Loan.Api.Controllers
     [ApiController]
     public class LoanController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        private static double InterestPercentage = 12;
+
+        private readonly Logic logic;
+
+        public LoanController(
+            Logic logic
+            )
         {
-            return new string[] { "value1", "value2" };
+            this.logic = logic;
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("Interest/Percentage")]
+        public double GetInterestPercentage()
         {
-            return "value";
+            return InterestPercentage;
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPut("Interest/Percentage/{interestPercentage}")]
+        public void GetInterestPercentage(double interestPercentage)
         {
+            InterestPercentage = interestPercentage;
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet("Principal/{principal}/{year}")]
+        public IEnumerable<PrincipalDetail> GetPrincipalByYear(double principal, int year)
         {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var principalDetails = logic.CalculatePrincipal(principal, year, InterestPercentage);
+            return principalDetails;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Answer.Loan.Api.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,16 +8,24 @@ namespace Answer.Loan.Api
 {
     public class Logic
     {
-        public double CalculateNewPrincipal(double principal, int year, double interestPercentage)
+        public IEnumerable<PrincipalDetail> CalculatePrincipal(double principal, int year, double interestPercentage)
         {
-            var newPrincipal = principal;
-            for (int i = 0; i < year; i++)
+            var principalDetails = Enumerable.Empty<PrincipalDetail>().ToList();
+            for (int i = 1; i <= year; i++)
             {
-                var interest = CalculateInterest(newPrincipal, interestPercentage);
-                newPrincipal += interest;
+                var currentPrincipal = principalDetails.LastOrDefault()?.NewPrincipal ?? principal;
+                var interest = CalculateInterest(currentPrincipal, interestPercentage);
+                principalDetails.Add(new PrincipalDetail
+                {
+                    InterestPercentage = interestPercentage,
+                    Year = i,
+                    Principal = currentPrincipal,
+                    Interest = interest,
+                    NewPrincipal = currentPrincipal + interest,
+                });
             }
 
-            return newPrincipal;
+            return principalDetails;
         }
 
         public double CalculateInterest(double principal, double interestPercentage)

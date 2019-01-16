@@ -1,14 +1,48 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      <ion-icon name="calculator"></ion-icon>
+      Loan Calculator
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="GoConfig()">
+        <ion-icon name="cog"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" stacked>เงินต้น:</ion-label>
+      <ion-input type="number" [(ngModel)]="principal"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>จำนวนปี:</ion-label>
+      <ion-input type="number" [(ngModel)]="year"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>ดอกเบี้ย (%):</ion-label>
+      <ion-label stacked>{{ interestPercentage }}</ion-label>
+    </ion-item>
+  </ion-list>
+  <button ion-button full (click)="Calculate()">Calculate</button>
+  <ion-grid *ngIf="documents">
+    <h5>ยอดเงิน {{ principal | number }} บาท ที่ดอกเบี้ย {{ documents[0].interestPercentage }}% เป็นระยะ {{ year }} ปี จะมีรายละเอียดในแต่ละปีดังนี้</h5>
+    <ion-row *ngFor="let document of documents">
+      <ion-col col-6><b>ปีที่</b></ion-col>
+      <ion-col col-6>{{ document.year }}</ion-col>
+
+      <ion-col offset-1 col-5><b>คงค้าง</b></ion-col>
+      <ion-col col-6>{{ document.principal | number }}</ion-col>
+
+      <ion-col offset-1 col-5><b>ดอกเบี้ย</b></ion-col>
+      <ion-col col-6>{{ document.interest }}</ion-col>
+      <ion-col offset-4 col-8>= {{ document.principal | number }} x {{ document.interestPercentage }} / 100</ion-col>
+
+      <ion-col offset-1 col-5><b>ยอดที่ต้องชำระ</b></ion-col>
+      <ion-col col-6>{{ document.newPrincipal | number }}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
