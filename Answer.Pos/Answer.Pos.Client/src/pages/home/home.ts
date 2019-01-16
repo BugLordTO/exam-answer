@@ -1,3 +1,4 @@
+import { AddProductPage } from './../add-product/add-product';
 import { CartPage } from './../cart/cart';
 import { HttpClient } from '@angular/common/http';
 import { Product, GlobalVarible, AddItem } from './../../app/models';
@@ -20,9 +21,14 @@ export class HomePage {
     this.navCtrl.push(CartPage);
   }
 
-  AddToCart(product: any) {
+  GoAddProduct() {
+    this.navCtrl.push(AddProductPage);
+  }
+
+  AddToCart(product: Product) {
     if (product.quantity == null || product.quantity <= 0) {
       alert("Please input amount.");
+      return;
     }
 
     var addItem = new AddItem();

@@ -1,5 +1,10 @@
 import { HttpHeaders } from "@angular/common/http";
 
+export class ProductBase {
+    name: string;
+    unitPrice: number;
+}
+
 export class Product {
     id: number;
     name: string;

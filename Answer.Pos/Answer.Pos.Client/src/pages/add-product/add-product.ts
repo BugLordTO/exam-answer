@@ -1,12 +1,7 @@
+import { HttpClient } from '@angular/common/http';
+import { Product, GlobalVarible, ProductBase } from './../../app/models';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the AddProductPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +10,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddProductPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  document: ProductBase = new ProductBase;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddProductPage');
+  Add() {
+    if (this.document.name == "" || this.document.unitPrice <= 0) {
+      alert("Please input name and unit price.");
+      return;
+    }
+
+    this.http.post(GlobalVarible.host + "/api/Product", JSON.stringify(this.document), GlobalVarible.httpOptions)
+      .subscribe(data => {
+        alert("Added.");
+        this.navCtrl.pop();
+      });
   }
 
 }
