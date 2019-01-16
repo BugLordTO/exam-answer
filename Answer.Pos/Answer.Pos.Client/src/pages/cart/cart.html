@@ -1,18 +1,56 @@
-<!--
-  Generated template for the CartPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Cart</ion-title>
+    <ion-title>
+      <ion-icon name="cart"></ion-icon> Cart
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
+  <h1 text-center>
+    <ion-icon name="cart"></ion-icon>
+  </h1>
+  <ion-grid *ngIf="document">
+    <ion-row>
+      <ion-col col-6>Totlal Price:</ion-col>
+      <ion-col col-6>{{ document.totalPrice | number }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>Discount:</ion-col>
+      <ion-col col-6>{{ document.discount | number }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>Grand totlal Price:</ion-col>
+      <ion-col col-6>{{ document.grandTotalPrice | number }}</ion-col>
+    </ion-row>
+    <hr />
+    <ion-row>
+      <ion-col col-12>
+        <h3>
+          <ion-icon name="list"></ion-icon> Items
+        </h3>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of document.items">
+      <ion-col>
+        <ion-grid>
+            <ion-row>
+              <ion-col col-12><ion-icon name="image"></ion-icon> {{ item.product.name }}</ion-col>
+            </ion-row>
+          <ion-row>
+            <ion-col col-6>Unit price:</ion-col>
+            <ion-col col-6>{{ item.product.unitPrice | number }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>Quantity:</ion-col>
+            <ion-col col-6>{{ item.quantity | number }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>Totlal Price:</ion-col>
+            <ion-col col-6>{{ item.totalPrice | number }}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -64,7 +64,7 @@ namespace Answer.Pos.Api
                 c.SwaggerEndpoint($"/swagger/V0.8/swagger.json", $"Answer 2 API V0.8");
             });
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

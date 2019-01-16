@@ -27,7 +27,7 @@ export class AddItem {
 }
 
 export class GlobalVarible {
-    static host: string = "https://localhost:44309";
+    static host: string = "http://localhost:51457";
 
     static httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
