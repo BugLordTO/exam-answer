@@ -8,7 +8,7 @@ namespace Answer.Loan.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class LoanController : ControllerBase
     {
         // GET api/values
         [HttpGet]
