@@ -15,12 +15,15 @@ namespace Answer.Loan.Api
                 var interest = CalculateInterest(newPrincipal, interestPercentage);
                 newPrincipal += interest;
             }
+
             return newPrincipal;
         }
 
         public double CalculateInterest(double principal, double interestPercentage)
         {
-            return (principal * interestPercentage) / 100;
+            var interest = (principal * interestPercentage) / 100;
+
+            return Math.Round(interest, 2);
         }
     }
 }
