@@ -1,0 +1,25 @@
+ข้อ 1
+	** client **
+		- หน้าแรก ใช้คำนวณรายการยอดที่ต้องชำระในแต่ละปี
+		- หน้าแรก มีปุ่มเฟืองอยู่บนขวา กดแล้วไปที่หน้าตั้งค่าร้อยละของดอกเบี้ย
+		- หน้าตั้งค่า ใช้บันทึกร้อยละของดอกเบี้ยไปที่ server
+	** api **
+		- LoanController.GetInterestPercentage() ใช้ดึงร้อยละของดอกเบี้ย (default = 12)
+		- LoanController.EditInterestPercentage(double interestPercentage) ใช้ตั้งค่าร้อยละของดอกเบี้ย
+		- LoanController.GetPrincipalByYear(double principal, int year) ใช้คำนวณ ยอดที่ต้องชำระ ในแต่ละปีจาก เงินต้นและจำนวนปี โดยใช้ค่าดอกเบี้ยจาก server
+		
+ข้อ 2
+	** client **
+		- หน้าแรก ใช้แสดงรายการสินค้าจาก server (default มีสินค้า 2 ชิ้น)
+		- หน้าแรกปุ่ม เครื่องหมายบวก (+) ด้านบนขวา กดแล้วไปที่หน้าเพิ่มสินค้า
+		- หน้าแรกปุ่ม ตะกร้า ด้านบนขวา กดแล้วไปที่หน้าตะกร้าสินค้าที่เพิ่มไว้
+		- การรีเซตตะกร้าหรือรายการสินค้า ใช้วิธีรัน server ใหม่
+		- หน้าเพิ่มสินค้า ใช้เพิ่มสินค้าใหม่ไปที่ server
+		- หน้าตะกร้าสินค้า ใช้แสดงสินค้าในตะกร้าพร้อมราคาแต่ละสินค้า ส่วนลด และราคารวม
+	** api **
+		- ProductController.GetProduct() ใช้ดึงรายการสินค้าในระบบทั้งหมด
+		- ProductController.GetProduct(int id)ใช้ดึงรายการสินค้าจากรหัสสินค้า
+		- ProductController.Post([FromBody]ProductBase document)ใช้เพิ่มสินค้าใหม่
+		- ProductController.Put(int id, [FromBody]ProductBase document)ใช้แก้ไขรายละเอียดสินค้า (ไม่ได้ใช้ที่ client)
+		- ProductController.Delete(int id)ใช้แก้ไขรายละเอียดสินค้า (ไม่ได้ใช้ที่ client)
+		

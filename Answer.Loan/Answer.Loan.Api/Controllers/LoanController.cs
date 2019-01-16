@@ -29,7 +29,7 @@ namespace Answer.Loan.Api.Controllers
         }
 
         [HttpPut("Interest/Percentage/{interestPercentage}")]
-        public void GetInterestPercentage(double interestPercentage)
+        public void EditInterestPercentage(double interestPercentage)
         {
             InterestPercentage = interestPercentage;
         }
