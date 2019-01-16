@@ -7,9 +7,20 @@ namespace Answer.Loan.Api
 {
     public class Logic
     {
-        public double CalculateNewPrincipal(double principal, int year)
+        public double CalculateNewPrincipal(double principal, int year, double interestPercentage)
         {
-            throw new NotImplementedException();
+            var newPrincipal = principal;
+            for (int i = 0; i < year; i++)
+            {
+                var interest = CalculateInterest(newPrincipal, interestPercentage);
+                newPrincipal += interest;
+            }
+            return newPrincipal;
+        }
+
+        public double CalculateInterest(double principal, double interestPercentage)
+        {
+            return (principal * interestPercentage) / 100;
         }
     }
 }
